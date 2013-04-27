@@ -1,0 +1,39 @@
+.container-fluid
+    .row-fluid
+        .span2
+            .well.sidebar-nav
+                %ul.nav-list.nav
+                    %li.nav-header
+                        Sidebar
+                    %li.nav-header
+                        %a{:href => '/'} Link
+                    %li
+                        %a{:href => '/'} Link                    
+                    %li
+                        %a{:href => '/'} Link
+                    %li
+                        %a{:href => '/'} Link
+    
+        .span10
+            .hero-unit
+                %h1
+                    Euptychiina ref database
+                %p
+                    Build using sinatra, couchdb and lucene
+                %p
+                    %a.btn.btn-primary.btn-large
+                        Learn more &raquo;
+            
+            .row-fluid
+                .span4
+                    %h2
+                        Last entries:
+                    %p= @result
+                    %p
+                        %a.btn{:href => '/'}
+                            View Details &raquo;
+
+                
+        %hr
+
+        %div= haml :footer
