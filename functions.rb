@@ -11,12 +11,32 @@ def get_data_from_myid(myid)
     return response
 end
 
+
+
 def get_data_from_id(id)
     resp = RestClient.get "#{DB}/" + id
     obj = JSON.parse(resp)
     response = convert_obj_to_citation(obj)
+    
+    if( obj['_attachments'] )
+        obj['_attachments'].each do |k,v|
+            filename = k;
+            @attachment = %Q{<h3>Attachments:</h3>}
+            if( v['content_type'] == "application/pdf" )
+                @attachment += %Q{ <a href='#{DB}/} + id + '/' + filename
+                @attachment += %Q{'><img src='../images/pdf.png' /> </a> }
+            elsif( v['content_type'] == "image/pdf" )
+                @attachment += %Q{ <a href='#{DB}/} + id + '/' + filename
+                @attachment += %Q{'><img src='../images/pdf.png' /> </a> }
+            end
+            end
+        end
+    end
+
     return response
 end
+
+
 
 def convert_obj_to_citation(obj)
     output  = "<b><a href='ref/" + obj['myid'] + "'>";
@@ -65,8 +85,9 @@ def format_authors(obj)
             given = author['given'].split(" ");
             given.each do |name|
                 name = name.gsub(".", "").strip[0,1]
-                n_authors += name + ", "
+                n_authors += name
             end
+            n_authors += ", "
 
         elsif author['name']
             n = Namae.parse author['name']

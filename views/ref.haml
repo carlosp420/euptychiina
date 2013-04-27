@@ -5,8 +5,6 @@
                 %ul.nav-list.nav
                     %li.nav-header
                         Sidebar
-                    %li.nav-header
-                        %a{:href => '/'} Link
                     %li
                         %a{:href => '/'} Link                    
                     %li
@@ -17,11 +15,14 @@
         .span10
             .row-fluid
                 .span12
-                    %h2
+                    %h3
                         Reference:
                     %p= @citation
-
+            
+            .row-fluid
+                .span4
+                    %p= @attachment
                 
-        %hr
+    %hr
 
-        %div= haml :footer
+    %div= haml :footer
