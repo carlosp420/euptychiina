@@ -1,5 +1,6 @@
 require 'couchrest'
 
+
 def get_data_from_myid(myid)
     mydb = CouchRest.database("http://localhost:5984/euptychiina");
     myid = myid.to_s()
@@ -29,7 +30,6 @@ def get_data_from_id(id)
                 @attachment += %Q{ <a href='#{DB}/} + id + '/' + filename
                 @attachment += %Q{'><img src='../images/pdf.png' /> </a> }
             end
-            end
         end
     end
 
@@ -39,7 +39,7 @@ end
 
 
 def convert_obj_to_citation(obj)
-    output  = "<b><a href='ref/" + obj['myid'] + "'>";
+    output  = "<b><a href='" + request.base_url + "/ref/" + obj['myid'] + "'>";
     output += format_authors(obj);
     output += "</a></b> ";
 
@@ -100,3 +100,5 @@ def format_authors(obj)
     n_authors += '.'
     return n_authors
 end
+
+

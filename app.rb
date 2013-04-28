@@ -6,12 +6,13 @@ require 'rest_client'
 require 'json'
 require 'namae'
 
+
 require './functions'
 
 DB = 'http://localhost:5984/euptychiina'
 
 get '/' do
-    @title = "Home Page"
+    @title = "Home Page" 
 
     # last entries
     data = RestClient.get "#{DB}/_design/references/_view/by_time?limit=10";
